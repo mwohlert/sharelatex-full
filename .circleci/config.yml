@@ -21,6 +21,7 @@ commands:
           --build-arg SHARELATEX_VERSION=$SHARELATEX_VERSION
           -t $DOCKER_USER/sharelatex-full:$SHARELATEX_VERSION
           -t $DOCKER_USER/sharelatex-full:latest
+          Dockerfile
       - run: docker push $DOCKER_USER/sharelatex-full:$SHARELATEX_VERSION
   
 
