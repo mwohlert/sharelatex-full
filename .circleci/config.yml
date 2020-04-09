@@ -30,7 +30,7 @@ jobs:
     <<: *docker_env
     steps:
       - setup
-      - build_full_container:
+      - build_full_container
     environment:
       SHARELATEX_VERSION: 2.2.0
 
