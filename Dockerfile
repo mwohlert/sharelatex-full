@@ -10,5 +10,5 @@ RUN set -x \
     #
     && tlmgr update --self --verify-repo=none \
     # https://tex.stackexchange.com/questions/340964/what-do-i-need-to-install-to-make-more-packages-available-under-sharelatex
-    && tlmgr install --verify-repo=none scheme-full
+    && (tlmgr install --verify-repo=none scheme-full || true)
 
