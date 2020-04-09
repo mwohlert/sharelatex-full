@@ -1,0 +1,41 @@
+version: 2.1
+
+references:
+  docker_env: &docker_env
+    docker:
+      - image: docker:stable
+
+commands:
+  setup:
+    description: "General setup command"
+    steps:
+    - checkout
+    - setup_remote_docker
+    - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+  build_full_container:
+    description: "Command for building a rust cross compile docker image"
+    steps:
+      - run: >-
+          docker build
+          --build-arg SHARELATEX_VERSION=$SHARELATEX_VERSION
+          -t $DOCKER_USER/sharelatex-full:$SHARELATEX_VERSION
+          -t $DOCKER_USER/sharelatex-full:latest
+          << parameters.target >>
+      - run: docker push $DOCKER_USER/sharelatex-full:$SHARELATEX_VERSION
+  
+
+jobs:
+  sharelatex-full:
+    <<: *docker_env
+    steps:
+      - setup
+      - build_full_container:
+    environment:
+      SHARELATEX_VERSION: 2.2.0
+
+
+workflows:
+  build:
+    jobs:
+      - sharelatex-full
