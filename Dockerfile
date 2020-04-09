@@ -8,7 +8,7 @@ RUN set -x \
     # Latest TeX Live repository
     && tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet/ \
     #
-    && tlmgr update --self \
+    && tlmgr update --self --verify-repo=none \
     # https://tex.stackexchange.com/questions/340964/what-do-i-need-to-install-to-make-more-packages-available-under-sharelatex
-    && tlmgr install scheme-full
+    && tlmgr install --verify-repo=none scheme-full
 
