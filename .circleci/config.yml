@@ -23,6 +23,7 @@ commands:
           -t $DOCKER_USER/sharelatex-full:latest
           .
       - run: docker push $DOCKER_USER/sharelatex-full:$SHARELATEX_VERSION
+      - run: docker push $DOCKER_USER/sharelatex-full:latest
   
 
 jobs:
@@ -32,7 +33,7 @@ jobs:
       - setup
       - build_full_container
     environment:
-      SHARELATEX_VERSION: 2.5.2
+      SHARELATEX_VERSION: 2.7.0
 
 
 workflows:
